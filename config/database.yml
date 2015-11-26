@@ -21,9 +21,17 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
 
+
+
 development:
   <<: *default
+  development:
+  adapter: postgresql
+  encoding: unicode
   database: ecommerce_development
+  pool: 5
+  username: primavera
+  password: awesome
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

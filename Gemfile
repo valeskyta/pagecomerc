@@ -17,8 +17,15 @@ gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'sass-rails'
 gem 'mini_magick'
 gem 'carrierwave'
-
+gem 'underscore-rails'
 gem 'delayed_job_active_record'
+
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'pg'
+
+gem 'groupdate'
+gem 'chartkick'
 
 group :development, :test do
   gem 'byebug'

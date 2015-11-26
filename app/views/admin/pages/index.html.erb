@@ -1,0 +1,5 @@
+<h2>admin data</h2>
+<%= pie_cjart @orders %>
+
+<h4>ordenes pagadas</h4>
+<%= clumn_chart @paid_orders, xtitle: 'dia', ytitle: 'cantidad' %>

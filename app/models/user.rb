@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
 
   default_scope { order(:role, :id) }
 
+  geocoded_by :address ##geocode
+  after_validation :geocode, if: ->(obj) {obj.address.present? && obj.address_changed? }##esto ejecuta geocode siempre, no queremos que se ejecute siempre
+
   def default_role
     self.role ||= 1
   end
@@ -54,5 +57,7 @@ class User < ActiveRecord::Base
     def send_password_change_email
       UserMailer.password_changed(self).deliver_later(wait: 30.seconds)
     end
+
+
 
 end

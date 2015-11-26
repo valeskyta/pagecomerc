@@ -24,6 +24,22 @@
     <%= f.email_field :email, class: 'form-control' %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, class: 'form-control js-address' %>
+    <button class="btn btn-primary js-getlocation"> Get Location</button>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :latitude %><br />
+    <%= f.text_field :latitude, class: 'form-control js-latitude' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :longitude %><br />
+    <%= f.text_field :longitude, class: 'form-control js-longitude' %>
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
   <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
@@ -64,19 +80,19 @@
       </thead>
       <tbody>
         <% unless current_user.orders.pending.empty? %>
-          <% current_user.orders.pending.each do |order| %>
-            <tr>
-              <th scope="row" class="text-center"><%= order.id %></th>
-              <td>Pendiente</td>
-              <td><%= number_to_currency order.product_orders.total %></td>
-              <td><%= link_to 'Pagar', paid_order_path(order), method: :post, class: 'btn btn-success' %></td>
-              <td><%= link_to 'Cancelar', cancel_order_path(order), method: :delete, class: 'btn btn-danger' %></td>
-            </tr>
-          <% end %>
+        <% current_user.orders.pending.each do |order| %>
+        <tr>
+          <th scope="row" class="text-center"><%= order.id %></th>
+          <td>Pendiente</td>
+          <td><%= number_to_currency order.product_orders.total %></td>
+          <td><%= link_to 'Pagar', paid_order_path(order), method: :post, class: 'btn btn-success' %></td>
+          <td><%= link_to 'Cancelar', cancel_order_path(order), method: :delete, class: 'btn btn-danger' %></td>
+        </tr>
+        <% end %>
         <% else %>
-          <tr>
-            <th colspan="4" class="text-center">No tienes ordenes pendientes</th>
-          </tr>
+        <tr>
+          <th colspan="4" class="text-center">No tienes ordenes pendientes</th>
+        </tr>
         <% end %>
       </tbody>
     </table>
@@ -96,6 +112,10 @@
     Volver
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
     <% end %>
+
+<!-- ESTE ES EL MAPA -->
+  <div id="map" class="gmap m-t-md"></div>
+
   </div>
 
 </div>
